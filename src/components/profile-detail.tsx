@@ -1,9 +1,12 @@
 import { Button } from "@/components/button";
 import {
+  Dialog,
+  DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/dialog";
 import { Input } from "@/components/input";
 import { API_URL } from "@/config/api";
@@ -12,6 +15,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "./loader";
+import { LockKeyholeIcon } from "lucide-react";
+import ChangePassword from "./change-password";
 
 type ProfileDetailType = {
   phone: string;
@@ -233,7 +238,20 @@ const ProfileDetail = () => {
       )}
       <DialogFooter>
         {!isEditing ? (
-          <Button onClick={() => setIsEditing(true)}>Edit</Button>
+          <>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button title="Change password?">
+                  <LockKeyholeIcon className="stroke-background" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <ChangePassword />
+              </DialogContent>
+            </Dialog>
+
+            <Button onClick={() => setIsEditing(true)}>Edit</Button>
+          </>
         ) : (
           <Button onClick={handleUpdate}>Update</Button>
         )}

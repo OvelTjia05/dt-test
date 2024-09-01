@@ -122,7 +122,7 @@ const Order = () => {
   return (
     <div className="flex h-full flex-col">
       {!isLoading ? (
-        <>
+        <div className="grid">
           <Table className="">
             <TableHeader className="sticky top-0 bg-background">
               <TableRow>
@@ -202,7 +202,7 @@ const Order = () => {
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-        </>
+        </div>
       ) : (
         <Loader label="Loading..." />
       )}

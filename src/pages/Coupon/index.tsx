@@ -24,6 +24,7 @@ import CouponDetail from "./CouponDetail";
 import { Button } from "@/components/button";
 import AddCoupon from "./AddCoupon";
 import Loader from "@/components/loader";
+import Export from "./Export";
 
 type CouponItem = {
   code: string;
@@ -109,50 +110,55 @@ const Coupon = () => {
   };
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-1 flex-col">
       {!isLoading ? (
         <>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="mb-4 w-fit self-end">Add Coupon</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <AddCoupon />
-            </DialogContent>
-          </Dialog>
-          <Table>
-            <TableHeader className="sticky top-0 bg-background">
-              <TableRow>
-                <TableHead>Code</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Start Date</TableHead>
-                <TableHead>End Date</TableHead>
-                <TableHead className="text-right">Created At</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {couponData?.items.map((coupon) => (
-                <Dialog key={coupon.code}>
-                  <DialogTrigger asChild className="cursor-pointer">
-                    <TableRow>
-                      <TableCell className="font-medium">
-                        {coupon.code}
-                      </TableCell>
-                      <TableCell>{coupon.name}</TableCell>
-                      <TableCell>{coupon.start_date}</TableCell>
-                      <TableCell>{coupon.end_date}</TableCell>
-                      <TableCell className="text-right">
-                        {coupon.created_at}
-                      </TableCell>
-                    </TableRow>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <CouponDetail id={coupon.code} />
-                  </DialogContent>
-                </Dialog>
-              ))}
-            </TableBody>
-          </Table>
+          <div className="flex gap-3 self-end">
+            <Export />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="mb-4 w-fit self-end">Add Coupon</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <AddCoupon />
+              </DialogContent>
+            </Dialog>
+          </div>
+          <div className="grid">
+            <Table className="">
+              <TableHeader className="sticky top-0 bg-background">
+                <TableRow>
+                  <TableHead>Code</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Start Date</TableHead>
+                  <TableHead>End Date</TableHead>
+                  <TableHead className="text-right">Created At</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {couponData?.items.map((coupon) => (
+                  <Dialog key={coupon.code}>
+                    <DialogTrigger asChild className="cursor-pointer">
+                      <TableRow>
+                        <TableCell className="font-medium">
+                          {coupon.code}
+                        </TableCell>
+                        <TableCell>{coupon.name}</TableCell>
+                        <TableCell>{coupon.start_date}</TableCell>
+                        <TableCell>{coupon.end_date}</TableCell>
+                        <TableCell className="text-right">
+                          {coupon.created_at}
+                        </TableCell>
+                      </TableRow>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <CouponDetail id={coupon.code} />
+                    </DialogContent>
+                  </Dialog>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
           <Pagination className="">
             <PaginationContent>
               <PaginationItem

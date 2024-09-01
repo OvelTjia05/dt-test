@@ -1,3 +1,19 @@
 * {
   font-family: "Inter", sans-serif;
 }
+
+.toast-duration::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  @apply animate-moveline-left;
+  animation-delay: 400ms;
+}
+
+.toast-duration:hover::after {
+  animation-play-state: paused;
+}

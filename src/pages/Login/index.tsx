@@ -17,8 +17,10 @@ import axios from "axios";
 import { API_URL } from "@/config/api";
 import { useNavigate } from "react-router-dom";
 import Loader from "@/components/loader";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
+  const { toast } = useToast();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,9 +39,13 @@ const Login = () => {
         localStorage.setItem("profile_image", data.profile_image);
         navigate("/app", { replace: true });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
-      alert("Something went wrong when logging in");
+      toast({
+        title: "Error",
+        description: error?.response?.data.message || "Something went wrong",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
