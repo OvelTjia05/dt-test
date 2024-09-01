@@ -79,7 +79,7 @@ const Login = () => {
                       <FormLabel>Phone</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="your name..."
+                          placeholder="your number..."
                           className=""
                           {...field}
                         />
