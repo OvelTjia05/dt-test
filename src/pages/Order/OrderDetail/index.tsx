@@ -57,7 +57,6 @@ const OrderDetail: React.FC<{ invoice: string }> = ({ invoice }) => {
         { headers, signal },
       );
 
-      console.log("res order detail", response);
       const { data, status } = response;
       if (status === 200) {
         setDetail(data);

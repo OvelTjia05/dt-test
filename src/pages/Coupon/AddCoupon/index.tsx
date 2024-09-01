@@ -25,8 +25,6 @@ const AddCoupon = () => {
     end_date: "",
   });
 
-  console.log(coupon);
-
   const handleCreate = async () => {
     try {
       setIsLoading(true);
@@ -34,7 +32,7 @@ const AddCoupon = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       };
-      const response = await axios.post(
+      await axios.post(
         `${API_URL.customerService}/coupons`,
         {
           code: coupon.code,
@@ -44,8 +42,6 @@ const AddCoupon = () => {
         },
         { headers },
       );
-
-      console.log("res create coupon", response);
     } catch (error: any) {
       if (axios.isCancel(error)) {
         console.log("Request canceled", error.message);

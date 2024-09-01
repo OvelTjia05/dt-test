@@ -42,7 +42,6 @@ const ProfileDetail = () => {
         headers,
         signal,
       });
-      console.log("response profile", response);
       const { data, status } = response;
       if (status === 200) {
         setDetail(data);
@@ -87,7 +86,6 @@ const ProfileDetail = () => {
         formData,
         { headers },
       );
-      console.log("response update profile", response);
       const { status } = response;
       if (status === 200) {
         localStorage.setItem("name", detail?.name || "");

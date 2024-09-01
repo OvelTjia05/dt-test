@@ -37,7 +37,6 @@ const CouponDetail: React.FC<{ id: string }> = ({ id }) => {
         { headers, signal },
       );
 
-      console.log("res coupon detail", response);
       const { data, status } = response;
       if (status === 200) {
         setDetail(data);
@@ -69,7 +68,7 @@ const CouponDetail: React.FC<{ id: string }> = ({ id }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       };
-      const response = await axios.put(
+      await axios.put(
         `${API_URL.customerService}/coupons/${id}`,
         {
           name: detail?.name,
@@ -78,7 +77,6 @@ const CouponDetail: React.FC<{ id: string }> = ({ id }) => {
         },
         { headers },
       );
-      console.log("res update coupon", response);
     } catch (error: any) {
       if (axios.isCancel(error)) {
         console.log("Request canceled", error.message);

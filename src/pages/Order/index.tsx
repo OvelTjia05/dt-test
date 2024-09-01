@@ -73,7 +73,6 @@ const Order = () => {
         { headers, signal },
       );
 
-      console.log("res order list", response);
       const { data, status } = response;
       if (status === 200) {
         setOrderData(data);

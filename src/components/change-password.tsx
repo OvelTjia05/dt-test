@@ -72,13 +72,8 @@ const ChangePassword = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getAuthToken()}`,
       };
-      const response = await axios.put(
-        `${API_URL.common}/auth/password`,
-        password,
-        { headers },
-      );
+      await axios.put(`${API_URL.common}/auth/password`, password, { headers });
 
-      console.log("res change password", response);
       toast({
         title: "Success",
         description: "Password changed successfully.",

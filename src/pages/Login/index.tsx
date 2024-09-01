@@ -27,12 +27,9 @@ const Login = () => {
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
       setIsLoading(true);
-      console.log(`${API_URL.common}/auth/login`);
       const res = await axios.post(`${API_URL.common}/auth/login`, values);
-      console.log("result login", res);
       const { status, data } = res;
       if (status === 200) {
-        console.log("sukses login");
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("name", data.name);
         localStorage.setItem("role_name", data.role_name);

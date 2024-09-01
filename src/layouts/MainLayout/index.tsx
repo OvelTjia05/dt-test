@@ -40,7 +40,6 @@ const MainLayout = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getAuthToken()}`,
       };
-      console.log(headers);
       const response = await axios.post(
         `${API_URL.common}/auth/logout`,
         {},
@@ -49,7 +48,6 @@ const MainLayout = () => {
         },
       );
 
-      console.log("response logout", response);
       const { status } = response;
       if (status === 200) {
         localStorage.removeItem("token");

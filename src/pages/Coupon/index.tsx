@@ -63,7 +63,6 @@ const Coupon = () => {
         { headers, signal },
       );
 
-      console.log("res coupon list", response);
       const { data, status } = response;
       if (status === 200) {
         setCouponData(data);
